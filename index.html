@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeachSearch Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 50%;
+            margin: 100px auto;
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .logo {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
+
+        #search-bar {
+            width: 70%;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        #search-button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #search-button:hover {
+            background-color: #218838;
+        }
+
+        .resources {
+            margin-top: 30px;
+        }
+
+        .resources ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resources ul li {
+            margin: 10px 0;
+        }
+
+        .resources ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .resources ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Popup Styles */
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+        }
+
+        .close-popup {
+            cursor: pointer;
+            color: #d9534f;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">TeachSearch</h1>
+        <input type="text" id="search-bar" placeholder="Enter your search query..." />
+        <button id="search-button">Search</button>
+        
+        <div class="resources">
+            <h2>Quick Links</h2>
+            <ul>
+                <li><a href="https://whiterosemaths.com/" target="_blank">White Rose Maths</a></li>
+                <li><a href="https://www.bbc.co.uk/bitesize" target="_blank">BBC Bitesize</a></li>
+                <li><a href="https://www.khanacademy.org/" target="_blank">Khan Academy</a></li>
+                <li><a href="https://www.edutopia.org/" target="_blank">Edutopia</a></li>
+                <li><a href="https://www.nationalgeographic.com/" target="_blank">National Geographic</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Google CSE Script -->
+    <script async src="https://cse.google.com/cse.js?cx=f3ef13fc310a04dac"></script>
+    <div class="gcse-searchresults-only"></div>
+
+    <script>
+        document.getElementById('search-button').addEventListener('click', function() {
+            const query = document.getElementById('search-bar').value;
+            if (query) {
+                // Redirect to Google CSE search results
+                const cseUrl = `https://cse.google.com/cse?cx=f3ef13fc310a04dac#gsc.tab=0&gsc.q=${encodeURIComponent(query)}`;
+                window.open(cseUrl, '_blank');
+            } else {
+                alert('Please enter a valid search query.');
+            }
+        });
+
+        // Popup functionality
+        window.onload = function() {
+            const popup = document.createElement('div');
+            popup.className = 'popup';
+            popup.innerHTML = `
+                <div class="popup-content">
+                    <h2>Download the Browser!</h2>
+                    <p>Click the link below to download the browser:</p>
+                    <a href="YOUR_LINK_HERE" target="_blank">Download Browser</a>
+                    <div class="close-popup">Close</div>
+                </div>
+            `;
+            document.body.appendChild(popup);
+            popup.style.display = 'flex';
+
+            // Close popup
+            document.querySelector('.close-popup').onclick = function() {
+                popup.style.display = 'none';
+            };
+        };
+    </script>
+</body>
+</html>
